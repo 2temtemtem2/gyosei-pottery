@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>暁星 GYOSEI — 案A ミニマル</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans JP',sans-serif; color:#2b2b2b; background:#fff; font-weight:300; line-height:1.9; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1100px; margin:0 auto; padding:0 32px; }
+  header { padding:44px 0; display:flex; justify-content:space-between; align-items:baseline; }
+  .logo { font-size:26px; letter-spacing:.5em; font-weight:400; }
+  .logo small { display:block; font-size:9px; letter-spacing:.45em; color:#999; margin-top:6px; padding-left:.4em; }
+  nav a { color:#666; text-decoration:none; font-size:12px; letter-spacing:.2em; margin-left:34px; }
+  nav a:hover { color:#000; }
+  .hero { padding:60px 0 100px; }
+  .hero h1 { font-size:34px; font-weight:200; letter-spacing:.14em; line-height:1.8; }
+  .hero p { margin-top:28px; color:#777; font-size:14px; letter-spacing:.08em; max-width:560px; }
+  .section-label { font-size:11px; letter-spacing:.4em; color:#aaa; text-transform:uppercase; margin-bottom:40px; }
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:44px 36px; padding-bottom:100px; }
+  .card .ph { aspect-ratio:4/5; background:linear-gradient(160deg,#efece7,#e3ddd4); display:flex; align-items:center; justify-content:center; color:#b9b0a3; font-size:11px; letter-spacing:.3em; }
+  .card h3 { font-size:14px; font-weight:400; margin-top:18px; letter-spacing:.06em; }
+  .card .price { color:#888; font-size:13px; margin-top:4px; }
+  .buy { display:inline-block; margin-top:14px; font-size:11px; letter-spacing:.25em; color:#2b2b2b; text-decoration:none; border-bottom:1px solid #ccc; padding-bottom:4px; }
+  .buy:hover { border-color:#2b2b2b; }
+  .concept { background:#faf8f5; padding:96px 0; }
+  .concept .inner { max-width:640px; }
+  .concept h2 { font-size:20px; font-weight:300; letter-spacing:.1em; margin-bottom:26px; }
+  .concept p { color:#666; font-size:14px; letter-spacing:.05em; }
+  footer { padding:64px 0; font-size:11px; color:#aaa; letter-spacing:.15em; display:flex; justify-content:space-between; }
+  footer a { color:#aaa; text-decoration:none; }
+  @media(max-width:720px){ .grid{grid-template-columns:repeat(2,1fr);} .hero h1{font-size:24px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">暁星<small>GYOSEI</small></div>
+    <nav><a href="#works">WORKS</a><a href="#concept">CONCEPT</a><a href="#">ABOUT</a></nav>
+  </header>
+  <section class="hero">
+    <h1>日々の食卓に、<br>ひとつの静けさを。</h1>
+    <p>暁星の器は、毎日の暮らしのために生まれた普段使いの器です。手にとるたび、少しだけ丁寧な時間が流れますように。</p>
+  </section>
+</div>
+
+<div class="wrap" id="works">
+  <div class="section-label">Works</div>
+  <div class="grid">
+    <div class="card"><div class="ph">飯碗</div><h3>粉引 飯碗</h3><div class="price">¥3,200</div><a class="buy" href="#">購入する →</a></div>
+    <div class="card"><div class="ph">湯呑</div><h3>灰釉 湯呑</h3><div class="price">¥2,400</div><a class="buy" href="#">購入する →</a></div>
+    <div class="card"><div class="ph">小皿</div><h3>刷毛目 小皿</h3><div class="price">¥1,800</div><a class="buy" href="#">購入する →</a></div>
+    <div class="card"><div class="ph">マグ</div><h3>飴釉 マグカップ</h3><div class="price">¥3,600</div><a class="buy" href="#">購入する →</a></div>
+    <div class="card"><div class="ph">鉢</div><h3>白磁 中鉢</h3><div class="price">¥4,200</div><a class="buy" href="#">購入する →</a></div>
+    <div class="card"><div class="ph">皿</div><h3>七寸 平皿</h3><div class="price">¥4,800</div><a class="buy" href="#">購入する →</a></div>
+  </div>
+</div>
+
+<section class="concept" id="concept">
+  <div class="wrap"><div class="inner">
+    <h2>暁星について</h2>
+    <p>暁星（ぎょうせい）は、夜明けにひときわ輝く明けの明星から名づけました。特別な日のためではなく、名もない一日のための器を作っています。飽きのこないかたち、料理を引き立てる色。毎日使ってこそ、器は育っていきます。</p>
+  </div></div>
+</section>
+
+<div class="wrap">
+  <footer>
+    <div>© 暁星 GYOSEI</div>
+    <div><a href="#">特定商取引法に基づく表記</a>　/　<a href="#">お問い合わせ</a></div>
+  </footer>
+</div>
+</body>
+</html>

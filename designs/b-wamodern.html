@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>暁星 GYOSEI — 案B 和モダン</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;600&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Serif JP',serif; color:#33302b; background:#f4efe6; line-height:2; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 32px; }
+  header { display:flex; justify-content:space-between; align-items:center; padding:34px 0; }
+  .logo { font-size:30px; font-weight:500; letter-spacing:.35em; color:#3a2f26; }
+  .logo span { display:block; font-family:'Noto Sans JP',sans-serif; font-size:9px; letter-spacing:.5em; color:#a9967d; font-weight:400; margin-top:8px; padding-left:.3em; }
+  nav a { font-family:'Noto Sans JP',sans-serif; font-size:12px; color:#6d5f4f; text-decoration:none; margin-left:30px; letter-spacing:.15em; }
+  nav a:hover { color:#8a6d3b; }
+  .hero { position:relative; background:linear-gradient(135deg,#7a6a54,#5f5140); color:#f6f1e7; border-radius:3px; overflow:hidden; margin-bottom:80px; }
+  .hero-inner { padding:96px 56px; max-width:600px; }
+  .hero .seal { position:absolute; top:36px; right:44px; width:64px; height:64px; border:1px solid rgba(246,241,231,.5); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:20px; letter-spacing:.1em; }
+  .hero h1 { font-size:38px; font-weight:400; letter-spacing:.12em; line-height:1.7; }
+  .hero p { font-family:'Noto Sans JP',sans-serif; font-weight:300; font-size:14px; margin-top:26px; letter-spacing:.06em; opacity:.9; }
+  .heading { text-align:center; margin-bottom:52px; }
+  .heading .jp { font-size:24px; letter-spacing:.28em; color:#3a2f26; }
+  .heading .en { font-family:'Noto Sans JP',sans-serif; font-size:10px; letter-spacing:.4em; color:#b0a086; margin-top:8px; }
+  .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:40px 34px; padding-bottom:100px; }
+  .card { background:#fbf8f2; padding:16px 16px 26px; border-radius:2px; box-shadow:0 1px 0 rgba(90,70,40,.06); }
+  .card .ph { aspect-ratio:1/1; background:linear-gradient(150deg,#d9cbb4,#c3b092); border-radius:2px; display:flex; align-items:center; justify-content:center; color:#8a7a5f; font-family:'Noto Sans JP',sans-serif; font-size:12px; letter-spacing:.2em; }
+  .card h3 { font-size:17px; font-weight:500; margin-top:20px; text-align:center; letter-spacing:.08em; }
+  .card .price { font-family:'Noto Sans JP',sans-serif; text-align:center; color:#8a6d3b; font-size:14px; margin-top:6px; }
+  .buy { display:block; text-align:center; margin:18px auto 0; width:160px; padding:10px 0; background:#5f5140; color:#f6f1e7; text-decoration:none; font-family:'Noto Sans JP',sans-serif; font-size:12px; letter-spacing:.25em; border-radius:2px; }
+  .buy:hover { background:#483d30; }
+  .concept { background:#ece3d3; padding:90px 0; margin-bottom:0; }
+  .concept .inner { max-width:620px; margin:0 auto; text-align:center; }
+  .concept p { font-size:16px; color:#4a4034; letter-spacing:.08em; }
+  .concept .line { width:40px; height:1px; background:#b0a086; margin:0 auto 34px; }
+  footer { background:#3a2f26; color:#c9bda9; padding:56px 0; }
+  footer .wrap { display:flex; justify-content:space-between; align-items:center; font-family:'Noto Sans JP',sans-serif; font-size:11px; letter-spacing:.15em; }
+  footer a { color:#c9bda9; text-decoration:none; }
+  @media(max-width:720px){ .grid{grid-template-columns:1fr 1fr;} .hero-inner{padding:60px 32px;} .hero h1{font-size:27px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="logo">暁星<span>GYOSEI</span></div>
+    <nav><a href="#works">作品</a><a href="#concept">暁星について</a><a href="#">お問い合わせ</a></nav>
+  </header>
+  <section class="hero">
+    <div class="seal">暁</div>
+    <div class="hero-inner">
+      <h1>暮らしに寄り添う、<br>手のひらの器。</h1>
+      <p>ひとつひとつ手で作った、毎日のための器です。使うほどに手になじみ、食卓に静かな温もりを添えます。</p>
+    </div>
+  </section>
+</div>
+
+<div class="wrap" id="works">
+  <div class="heading"><div class="jp">作品</div><div class="en">WORKS</div></div>
+  <div class="grid">
+    <div class="card"><div class="ph">飯碗</div><h3>粉引 飯碗</h3><div class="price">¥3,200</div><a class="buy" href="#">購入する</a></div>
+    <div class="card"><div class="ph">湯呑</div><h3>灰釉 湯呑</h3><div class="price">¥2,400</div><a class="buy" href="#">購入する</a></div>
+    <div class="card"><div class="ph">小皿</div><h3>刷毛目 小皿</h3><div class="price">¥1,800</div><a class="buy" href="#">購入する</a></div>
+    <div class="card"><div class="ph">マグ</div><h3>飴釉 マグカップ</h3><div class="price">¥3,600</div><a class="buy" href="#">購入する</a></div>
+    <div class="card"><div class="ph">中鉢</div><h3>白磁 中鉢</h3><div class="price">¥4,200</div><a class="buy" href="#">購入する</a></div>
+    <div class="card"><div class="ph">平皿</div><h3>七寸 平皿</h3><div class="price">¥4,800</div><a class="buy" href="#">購入する</a></div>
+  </div>
+</div>
+
+<section class="concept" id="concept">
+  <div class="inner">
+    <div class="line"></div>
+    <p>暁星（ぎょうせい）は、夜明けにひときわ輝く明けの明星から名づけました。特別な日のためではなく、名もない一日のための器を。飽きのこないかたち、料理を引き立てる色。毎日使ってこそ、器は育っていきます。</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© 暁星 GYOSEI</div>
+    <div><a href="#">特定商取引法に基づく表記</a>　/　<a href="#">お問い合わせ</a></div>
+  </div>
+</footer>
+</body>
+</html>
