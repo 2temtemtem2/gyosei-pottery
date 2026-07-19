@@ -1,0 +1,11 @@
+このフォルダの写真は「仮の写真」です（Unsplash の無料ライセンス素材）。
+お父様の作品写真が用意できたら、同じファイル名で差し替えてください：
+  p1-meshiwan.jpg  … 飯碗
+  p2-yunomi.jpg    … 湯呑
+  p3-kozara.jpg    … 小皿
+  p4-mug.jpg       … マグ
+  p5-nakabachi.jpg … 中鉢
+  p6-oozara.jpg    … 七寸皿
+  hero.jpg         … トップの大きな写真
+  about.jpg        … 作り手紹介の写真
+出典: Unsplash (https://unsplash.com) / Unsplash License（商用可・帰属不要）

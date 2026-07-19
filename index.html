@@ -30,7 +30,8 @@
   .row { display:grid; grid-template-columns:repeat(3,1fr); gap:60px 44px; }
   .card .ph { aspect-ratio:4/5; border-radius:2px; overflow:hidden; transition:transform .5s; background:#e7f0ea; }
   .card:hover .ph { transform:translateY(-6px); }
-  .card .ph svg { width:100%; height:100%; display:block; }
+  .card .ph svg, .card .ph img { width:100%; height:100%; display:block; object-fit:cover; }
+  .hero-img img, .about-photo img { width:100%; height:100%; display:block; object-fit:cover; }
   .card .meta { display:flex; justify-content:space-between; align-items:baseline; margin-top:22px; }
   .card h3 { font-family:'Shippori Mincho',serif; font-size:17px; font-weight:400; letter-spacing:.06em; }
   .card .price { font-size:14px; color:#5f7d72; }
@@ -149,13 +150,14 @@
      stripe: '' の '' の中に決済リンクURLを貼るだけで買える状態になります。
      例）stripe: 'https://buy.stripe.com/xxxxxxxx'
      =========================================================== */
+  /* ★ img は「仮の写真」です。お父様の作品写真が撮れたら images/ に入れて差し替えてください。 */
   const PRODUCTS = [
-    { name:'粉引 飯碗',   price:'¥3,200', desc:'やさしい白化粧のごはん茶碗', type:'bowl',      stripe:'' },
-    { name:'灰釉 湯呑',   price:'¥2,400', desc:'手になじむ普段の湯呑',       type:'cup',       stripe:'' },
-    { name:'刷毛目 小皿', price:'¥1,800', desc:'取り皿にちょうどいい一枚',   type:'plate',     stripe:'' },
-    { name:'青磁 マグ',   price:'¥3,600', desc:'毎朝のコーヒーに',           type:'mug',       stripe:'' },
-    { name:'白磁 中鉢',   price:'¥4,200', desc:'煮物やサラダに映える深鉢',   type:'deepbowl',  stripe:'' },
-    { name:'青磁 七寸皿', price:'¥4,800', desc:'メイン料理を受けとめる大皿', type:'largeplate',stripe:'' },
+    { name:'粉引 飯碗',   price:'¥3,200', desc:'やさしい白化粧のごはん茶碗', type:'bowl',      img:'images/p1-meshiwan.jpg',  stripe:'' },
+    { name:'灰釉 湯呑',   price:'¥2,400', desc:'手になじむ普段の湯呑',       type:'cup',       img:'images/p2-yunomi.jpg',    stripe:'' },
+    { name:'刷毛目 小皿', price:'¥1,800', desc:'取り皿にちょうどいい一枚',   type:'plate',     img:'images/p3-kozara.jpg',    stripe:'' },
+    { name:'青磁 マグ',   price:'¥3,600', desc:'毎朝のコーヒーに',           type:'mug',       img:'images/p4-mug.jpg',       stripe:'' },
+    { name:'白磁 中鉢',   price:'¥4,200', desc:'煮物やサラダに映える深鉢',   type:'deepbowl',  img:'images/p5-nakabachi.jpg', stripe:'' },
+    { name:'青磁 七寸皿', price:'¥4,800', desc:'メイン料理を受けとめる大皿', type:'largeplate',img:'images/p6-oozara.jpg',    stripe:'' },
   ];
 
   /* 青磁の器イラスト（写真が用意できたら data-img に画像URLを入れて差し替え可） */
@@ -221,21 +223,32 @@
     }
   }
 
+  // 画像（写真）を優先し、無い場合は青磁イラストにフォールバック
+  function media(p){
+    if(p.img){
+      return '<img src="'+p.img+'" alt="'+p.name+'" loading="lazy" '+
+             'onerror="this.parentNode.innerHTML=window.__vessel(\''+p.type+'\')">';
+    }
+    return vesselSVG(p.type);
+  }
+  window.__vessel = vesselSVG; // フォールバック用
+
   // 商品カードを描画
   const row = document.getElementById('product-row');
   PRODUCTS.forEach((p,i)=>{
     const el = document.createElement('div');
     el.className = 'card';
     el.innerHTML =
-      '<div class="ph">'+vesselSVG(p.type)+'</div>'+
+      '<div class="ph">'+media(p)+'</div>'+
       '<div class="meta"><h3>'+p.name+'</h3><span class="price">'+p.price+'</span></div>'+
       '<div class="desc">'+p.desc+'</div>'+
       '<button class="buy">購入する</button>';
     el.querySelector('.buy').addEventListener('click',()=>buy(p));
     row.appendChild(el);
-    if(i===0){ document.getElementById('hero-img').innerHTML = vesselSVG('deepbowl'); }
   });
-  document.getElementById('about-photo').innerHTML = vesselSVG('cup');
+  // ヒーロー・作り手の写真
+  document.getElementById('hero-img').innerHTML   = '<img src="images/hero.jpg" alt="暁星の器" onerror="this.parentNode.innerHTML=window.__vessel(\'deepbowl\')">';
+  document.getElementById('about-photo').innerHTML = '<img src="images/about.jpg" alt="作り手" onerror="this.parentNode.innerHTML=window.__vessel(\'cup\')">';
 </script>
 </body>
 </html>
