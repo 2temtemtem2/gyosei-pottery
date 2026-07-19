@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>暁星 GYOSEI — 案C ギャラリー（青磁）</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500&family=Noto+Sans+JP:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans JP',sans-serif; color:#1e2c27; background:#f1f6f3; font-weight:300; line-height:2; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1240px; margin:0 auto; padding:0 48px; }
+  header { display:flex; justify-content:space-between; align-items:center; padding:40px 48px; position:sticky; top:0; background:rgba(241,246,243,.9); backdrop-filter:blur(8px); z-index:10; }
+  .logo { font-family:'Shippori Mincho',serif; font-size:24px; letter-spacing:.4em; color:#1e2c27; }
+  nav a { font-size:11px; letter-spacing:.28em; color:#6a8579; text-decoration:none; margin-left:38px; }
+  nav a:hover { color:#1e2c27; }
+  .hero { height:88vh; min-height:560px; display:grid; grid-template-columns:1.1fr 1fr; align-items:center; gap:40px; padding:0 48px; max-width:1240px; margin:0 auto; }
+  .hero-text h1 { font-family:'Shippori Mincho',serif; font-size:52px; font-weight:400; line-height:1.55; letter-spacing:.08em; color:#1e2c27; }
+  .hero-text .en { font-size:11px; letter-spacing:.5em; color:#9cbcae; margin-bottom:30px; }
+  .hero-text p { margin-top:34px; color:#6a8579; font-size:14px; max-width:400px; letter-spacing:.04em; }
+  .hero-img { aspect-ratio:3/4; background:linear-gradient(155deg,#c4dcd1,#8db3a5); border-radius:2px; }
+  .strip { font-family:'Shippori Mincho',serif; text-align:center; font-size:22px; letter-spacing:.3em; color:#334a41; padding:120px 0 90px; }
+  .works { padding-bottom:130px; }
+  .row { display:grid; grid-template-columns:repeat(3,1fr); gap:64px 48px; }
+  .card .ph { aspect-ratio:4/5; background:linear-gradient(160deg,#d7e7df,#b3cdc1); border-radius:2px; transition:transform .5s; }
+  .card:hover .ph { transform:translateY(-6px); }
+  .card .meta { display:flex; justify-content:space-between; align-items:baseline; margin-top:22px; }
+  .card h3 { font-family:'Shippori Mincho',serif; font-size:17px; font-weight:400; letter-spacing:.06em; color:#1e2c27; }
+  .card .price { font-size:13px; color:#78938a; }
+  .buy { display:inline-block; margin-top:12px; font-size:11px; letter-spacing:.3em; color:#1e2c27; text-decoration:none; }
+  .buy::after { content:""; display:block; height:1px; background:#1e2c27; transform:scaleX(0); transform-origin:left; transition:transform .3s; margin-top:5px; }
+  .card:hover .buy::after { transform:scaleX(1); }
+  .concept { background:#e1ede7; padding:130px 48px; }
+  .concept .inner { max-width:720px; margin:0 auto; text-align:center; }
+  .concept .en { font-size:11px; letter-spacing:.5em; color:#9cbcae; margin-bottom:28px; }
+  .concept p { font-family:'Shippori Mincho',serif; font-size:19px; line-height:2.2; color:#334a41; letter-spacing:.06em; }
+  footer { padding:70px 48px; display:flex; justify-content:space-between; max-width:1240px; margin:0 auto; font-size:11px; color:#8fa89d; letter-spacing:.18em; }
+  footer a { color:#8fa89d; text-decoration:none; }
+  @media(max-width:820px){ .hero{grid-template-columns:1fr; height:auto; padding:40px 48px 80px;} .hero-img{display:none;} .hero-text h1{font-size:38px;} .row{grid-template-columns:1fr 1fr; gap:44px 32px;} }
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">暁星</div>
+  <nav><a href="#works">WORKS</a><a href="#concept">CONCEPT</a><a href="#">ABOUT</a></nav>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <div class="en">GYOSEI &nbsp;—&nbsp; DAILY POTTERY</div>
+    <h1>暁の空を、<br>食卓の器に。</h1>
+    <p>毎日の暮らしのために生まれた、手仕事の普段使いの器。使うほどに味わいを増し、静かに日々に寄り添います。</p>
+  </div>
+  <div class="hero-img"></div>
+</section>
+
+<div class="strip">名もない一日を、少しだけ豊かに。</div>
+
+<div class="wrap works" id="works">
+  <div class="row">
+    <div class="card"><div class="ph"></div><div class="meta"><h3>粉引 飯碗</h3><span class="price">¥3,200</span></div><a class="buy" href="#">PURCHASE</a></div>
+    <div class="card"><div class="ph"></div><div class="meta"><h3>灰釉 湯呑</h3><span class="price">¥2,400</span></div><a class="buy" href="#">PURCHASE</a></div>
+    <div class="card"><div class="ph"></div><div class="meta"><h3>刷毛目 小皿</h3><span class="price">¥1,800</span></div><a class="buy" href="#">PURCHASE</a></div>
+    <div class="card"><div class="ph"></div><div class="meta"><h3>飴釉 マグ</h3><span class="price">¥3,600</span></div><a class="buy" href="#">PURCHASE</a></div>
+    <div class="card"><div class="ph"></div><div class="meta"><h3>白磁 中鉢</h3><span class="price">¥4,200</span></div><a class="buy" href="#">PURCHASE</a></div>
+    <div class="card"><div class="ph"></div><div class="meta"><h3>七寸 平皿</h3><span class="price">¥4,800</span></div><a class="buy" href="#">PURCHASE</a></div>
+  </div>
+</div>
+
+<section class="concept" id="concept">
+  <div class="inner">
+    <div class="en">CONCEPT</div>
+    <p>暁星は、夜明けにひときわ輝く明けの明星。<br>特別な日のためではなく、名もない一日のための器を作っています。飽きのこないかたち、料理を引き立てる色。毎日使ってこそ、器は育っていく。</p>
+  </div>
+</section>
+
+<footer>
+  <div>© 暁星 GYOSEI</div>
+  <div><a href="#">特定商取引法に基づく表記</a>　/　<a href="#">お問い合わせ</a></div>
+</footer>
+</body>
+</html>
