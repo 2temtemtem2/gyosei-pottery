@@ -3,73 +3,239 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>暁星 GYOSEI｜デザイン案</title>
+<title>暁星 GYOSEI｜普段使いの器</title>
+<meta name="description" content="暁星（ぎょうせい）— 毎日の暮らしのための、手仕事の普段使いの器。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@200;300;400;500&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Noto Sans JP',sans-serif; color:#33302b; background:#efe9dd; line-height:1.8; -webkit-font-smoothing:antialiased; }
-  .wrap { max-width:760px; margin:0 auto; padding:56px 24px 72px; }
-  .brand { font-family:'Noto Serif JP',serif; font-size:22px; letter-spacing:.35em; color:#8a6d3b; text-align:center; }
-  h1 { font-family:'Noto Serif JP',serif; font-size:26px; font-weight:600; text-align:center; margin:12px 0 8px; letter-spacing:.05em; }
-  .lead { text-align:center; color:#6d5f4f; font-size:14px; margin-bottom:40px; }
-  .card { display:block; text-decoration:none; color:inherit; background:#fbf9f4; border-radius:6px; padding:26px 28px; margin-bottom:18px; box-shadow:0 2px 14px rgba(90,70,40,.08); transition:transform .2s, box-shadow .2s; }
-  .card:hover { transform:translateY(-2px); box-shadow:0 6px 22px rgba(90,70,40,.14); }
-  .tag { display:inline-block; font-size:12px; font-weight:700; color:#fbf9f4; background:#5f5140; border-radius:20px; padding:3px 14px; letter-spacing:.1em; }
-  .card h2 { font-family:'Noto Serif JP',serif; font-size:20px; font-weight:600; margin:12px 0 4px; letter-spacing:.04em; }
-  .card p { font-size:13.5px; color:#6d5f4f; }
-  .go { margin-top:14px; font-size:13px; color:#8a6d3b; font-weight:500; letter-spacing:.1em; }
-  .note { text-align:center; font-size:12px; color:#948a76; margin-top:34px; line-height:1.9; }
-  .swatch { height:8px; border-radius:4px; margin-top:16px; }
+  html { scroll-behavior:smooth; }
+  body { font-family:'Noto Sans JP',sans-serif; color:#1e2c27; background:#f1f6f3; font-weight:300; line-height:2; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1240px; margin:0 auto; padding:0 48px; }
+  header { display:flex; justify-content:space-between; align-items:center; padding:32px 48px; position:sticky; top:0; background:rgba(241,246,243,.9); backdrop-filter:blur(8px); z-index:10; }
+  .logo { font-family:'Shippori Mincho',serif; font-size:24px; letter-spacing:.4em; color:#1e2c27; text-decoration:none; }
+  nav a { font-size:11px; letter-spacing:.28em; color:#6a8579; text-decoration:none; margin-left:34px; }
+  nav a:hover { color:#1e2c27; }
+  .hero { min-height:84vh; display:grid; grid-template-columns:1.1fr 1fr; align-items:center; gap:40px; padding:0 48px 40px; max-width:1240px; margin:0 auto; }
+  .hero-text .en { font-size:11px; letter-spacing:.5em; color:#9cbcae; margin-bottom:28px; }
+  .hero-text h1 { font-family:'Shippori Mincho',serif; font-size:50px; font-weight:400; line-height:1.55; letter-spacing:.08em; }
+  .hero-text p { margin-top:32px; color:#6a8579; font-size:14px; max-width:400px; letter-spacing:.04em; }
+  .hero-text .cta { display:inline-block; margin-top:34px; font-size:12px; letter-spacing:.28em; color:#1e2c27; text-decoration:none; border-bottom:1px solid #8db3a5; padding-bottom:6px; }
+  .hero-img { aspect-ratio:3/4; border-radius:2px; overflow:hidden; }
+  .strip { font-family:'Shippori Mincho',serif; text-align:center; font-size:22px; letter-spacing:.3em; color:#334a41; padding:100px 0 84px; }
+  .works { padding-bottom:120px; }
+  .sec-head { text-align:center; margin-bottom:56px; }
+  .sec-head .en { font-size:11px; letter-spacing:.5em; color:#9cbcae; margin-bottom:10px; }
+  .sec-head h2 { font-family:'Shippori Mincho',serif; font-size:24px; font-weight:500; letter-spacing:.2em; }
+  .row { display:grid; grid-template-columns:repeat(3,1fr); gap:60px 44px; }
+  .card .ph { aspect-ratio:4/5; border-radius:2px; overflow:hidden; transition:transform .5s; background:#e7f0ea; }
+  .card:hover .ph { transform:translateY(-6px); }
+  .card .ph svg { width:100%; height:100%; display:block; }
+  .card .meta { display:flex; justify-content:space-between; align-items:baseline; margin-top:22px; }
+  .card h3 { font-family:'Shippori Mincho',serif; font-size:17px; font-weight:400; letter-spacing:.06em; }
+  .card .price { font-size:14px; color:#5f7d72; }
+  .card .desc { font-size:12.5px; color:#89a49a; margin-top:2px; letter-spacing:.03em; }
+  .buy { display:inline-block; margin-top:16px; font-size:11px; letter-spacing:.28em; color:#fff; background:#5f7d72; padding:11px 26px; border:none; border-radius:2px; cursor:pointer; font-family:inherit; transition:background .2s; }
+  .buy:hover { background:#4a6459; }
+  .concept { background:#e1ede7; padding:120px 48px; }
+  .concept .inner { max-width:720px; margin:0 auto; text-align:center; }
+  .concept .en { font-size:11px; letter-spacing:.5em; color:#9cbcae; margin-bottom:26px; }
+  .concept p { font-family:'Shippori Mincho',serif; font-size:19px; line-height:2.2; color:#334a41; letter-spacing:.06em; }
+  .about { padding:120px 48px; max-width:900px; margin:0 auto; }
+  .about .en { text-align:center; font-size:11px; letter-spacing:.5em; color:#9cbcae; margin-bottom:10px; }
+  .about h2 { text-align:center; font-family:'Shippori Mincho',serif; font-size:24px; font-weight:500; letter-spacing:.2em; margin-bottom:44px; }
+  .about-body { display:grid; grid-template-columns:220px 1fr; gap:48px; align-items:start; }
+  .about-photo { aspect-ratio:1/1; border-radius:2px; overflow:hidden; background:#dbe8e1; }
+  .about-body p { font-size:14px; color:#43594f; letter-spacing:.03em; }
+  .about-body p + p { margin-top:18px; }
+  .about .maker { font-family:'Shippori Mincho',serif; font-size:16px; color:#1e2c27; margin-top:8px; }
+  .info { background:#e8f0ec; padding:70px 48px; }
+  .info .grid { max-width:900px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:14px 48px; font-size:13px; color:#43594f; }
+  .info .grid .k { font-family:'Shippori Mincho',serif; color:#1e2c27; letter-spacing:.1em; }
+  footer { padding:60px 48px; display:flex; justify-content:space-between; align-items:center; max-width:1240px; margin:0 auto; font-size:11px; color:#8fa89d; letter-spacing:.16em; flex-wrap:wrap; gap:14px; }
+  footer a { color:#8fa89d; text-decoration:none; }
+  footer a:hover { color:#5f7d72; }
+  @media(max-width:820px){
+    header{padding:22px 24px;} nav a{margin-left:18px;} .wrap{padding:0 24px;}
+    .hero{grid-template-columns:1fr; min-height:auto; padding:20px 24px 60px;} .hero-img{max-width:280px;margin:0 auto;} .hero-text h1{font-size:36px;}
+    .row{grid-template-columns:1fr 1fr; gap:40px 24px;} .concept,.about,.info{padding:80px 24px;}
+    .about-body{grid-template-columns:1fr;} .about-photo{max-width:200px;margin:0 auto;}
+    .info .grid{grid-template-columns:1fr;}
+  }
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="brand">暁星 GYOSEI</div>
-  <h1>サイトデザイン 3案</h1>
-  <p class="lead">気になる案をタップすると、実際のページが開きます。<br>どれがいいか教えてください。</p>
 
-  <a class="card" href="designs/a-minimal.html">
-    <span class="tag">案A</span>
-    <h2>白・ミニマル</h2>
-    <p>白基調で静かに洗練された印象。北欧・無印ふうで清潔感があります。</p>
-    <div class="go">タップして見る →</div>
-    <div class="swatch" style="background:linear-gradient(90deg,#fff,#efece7,#e3ddd4);border:1px solid #e3ddd4;"></div>
-  </a>
+<!-- 共有グラデーション定義（青磁色） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="cel" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#cbe3d8"/><stop offset="1" stop-color="#93b8a9"/>
+  </linearGradient>
+  <linearGradient id="celDark" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#a7c8ba"/><stop offset="1" stop-color="#84a597"/>
+  </linearGradient>
+  <radialGradient id="frame" cx="0.5" cy="0.42" r="0.75">
+    <stop offset="0" stop-color="#eef6f1"/><stop offset="1" stop-color="#d7e6de"/>
+  </radialGradient>
+</defs></svg>
 
-  <a class="card" href="designs/b-wamodern.html">
-    <span class="tag">案B</span>
-    <h2>和モダン・温かみ</h2>
-    <p>茶系で温かく上品。老舗の趣があり、贈り物需要にも強い安心感。</p>
-    <div class="go">タップして見る →</div>
-    <div class="swatch" style="background:linear-gradient(90deg,#7a6a54,#c3b092,#ece3d3);"></div>
-  </a>
+<header>
+  <a class="logo" href="#top">暁星</a>
+  <nav>
+    <a href="#works">WORKS</a>
+    <a href="#concept">CONCEPT</a>
+    <a href="#about">ABOUT</a>
+  </nav>
+</header>
 
-  <a class="card" href="designs/c-gallery.html">
-    <span class="tag">案C</span>
-    <h2>余白・ギャラリー（ベージュ）</h2>
-    <p>余白たっぷりの雑誌のような作家サイト。世界観で魅せて高単価向き。</p>
-    <div class="go">タップして見る →</div>
-    <div class="swatch" style="background:linear-gradient(90deg,#fcfbf9,#ece6dc,#d2c7b6);border:1px solid #e3ddd4;"></div>
-  </a>
+<section class="hero" id="top">
+  <div class="hero-text">
+    <div class="en">GYOSEI &nbsp;—&nbsp; DAILY POTTERY</div>
+    <h1>暁の空を、<br>食卓の器に。</h1>
+    <p>毎日の暮らしのために生まれた、手仕事の普段使いの器。使うほどに味わいを増し、静かに日々に寄り添います。</p>
+    <a class="cta" href="#works">器を見る →</a>
+  </div>
+  <div class="hero-img" id="hero-img"></div>
+</section>
 
-  <a class="card" href="designs/c-gallery-blue.html">
-    <span class="tag">案C 青</span>
-    <h2>余白・ギャラリー（青）</h2>
-    <p>案Cを明け方の空のような青に。屋号「暁星」＝明けの明星のイメージにぴったり。涼やか＆清潔感。</p>
-    <div class="go">タップして見る →</div>
-    <div class="swatch" style="background:linear-gradient(90deg,#f5f8fa,#c8d7e2,#8ba7bd);border:1px solid #cdd9e2;"></div>
-  </a>
+<div class="strip">名もない一日を、少しだけ豊かに。</div>
 
-  <a class="card" href="designs/c-gallery-celadon.html">
-    <span class="tag">案C 青磁</span>
-    <h2>余白・ギャラリー（青磁）</h2>
-    <p>案Cを青磁釉のようなやわらかい青緑に。焼き物らしい落ち着きと上品さ。器がいちばん映える色合い。</p>
-    <div class="go">タップして見る →</div>
-    <div class="swatch" style="background:linear-gradient(90deg,#f1f6f3,#c4dcd1,#8db3a5);border:1px solid #cbe0d6;"></div>
-  </a>
-
-  <p class="note">※ 器の写真はまだ仮のグレー枠です。<br>本番では実物の写真が入ります。</p>
+<div class="wrap works" id="works">
+  <div class="sec-head"><div class="en">WORKS</div><h2>作品</h2></div>
+  <div class="row" id="product-row"></div>
 </div>
+
+<section class="concept" id="concept">
+  <div class="inner">
+    <div class="en">CONCEPT</div>
+    <p>暁星は、夜明けにひときわ輝く明けの明星。<br>特別な日のためではなく、名もない一日のための器を作っています。飽きのこないかたち、料理を引き立てる色。毎日使ってこそ、器は育っていく。</p>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="en">ABOUT</div>
+  <h2>作り手について</h2>
+  <div class="about-body">
+    <div class="about-photo" id="about-photo"></div>
+    <div>
+      <p>暁星の器は、ひとつひとつ手仕事で作られています。轆轤（ろくろ）をひき、釉薬をかけ、窯で焼き上げる——同じものはふたつとなく、それぞれに手のあとが残ります。</p>
+      <p>華美な装飾はありません。毎日の食卓で、料理を引き立て、手になじむこと。そんな「使うための器」を目指しています。長く使ううちに生まれる小さな貫入（かんにゅう）や色の変化も、どうぞ愉しんでください。</p>
+      <p class="maker">陶芸家　暁星　　　　<span style="font-size:12px;color:#89a49a;font-family:'Noto Sans JP';">※プロフィール文はあとで差し替えできます</span></p>
+    </div>
+  </div>
+</section>
+
+<section class="info" id="info">
+  <div class="grid">
+    <div><span class="k">配送について</span><br>ご注文から3〜5営業日以内に発送します。割れ物のため、緩衝材で丁寧に梱包してお届けします。</div>
+    <div><span class="k">送料</span><br>全国一律 ¥770（レターパック／宅急便コンパクト）。※金額は目安です。あとで調整できます。</div>
+    <div><span class="k">お支払い</span><br>クレジットカード（Stripe決済）。カード情報は当店に保存されません。</div>
+    <div><span class="k">お問い合わせ</span><br>メール：freemail.service05@gmail.com</div>
+  </div>
+</section>
+
+<footer>
+  <div>© 暁星 GYOSEI</div>
+  <div>
+    <a href="tokushoho.html">特定商取引法に基づく表記</a>
+    &nbsp;/&nbsp;
+    <a href="mailto:freemail.service05@gmail.com">お問い合わせ</a>
+  </div>
+</footer>
+
+<script>
+  /* ===========================================================
+     商品リスト  ★ Stripeの決済リンクを作ったら、各商品の
+     stripe: '' の '' の中に決済リンクURLを貼るだけで買える状態になります。
+     例）stripe: 'https://buy.stripe.com/xxxxxxxx'
+     =========================================================== */
+  const PRODUCTS = [
+    { name:'粉引 飯碗',   price:'¥3,200', desc:'やさしい白化粧のごはん茶碗', type:'bowl',      stripe:'' },
+    { name:'灰釉 湯呑',   price:'¥2,400', desc:'手になじむ普段の湯呑',       type:'cup',       stripe:'' },
+    { name:'刷毛目 小皿', price:'¥1,800', desc:'取り皿にちょうどいい一枚',   type:'plate',     stripe:'' },
+    { name:'青磁 マグ',   price:'¥3,600', desc:'毎朝のコーヒーに',           type:'mug',       stripe:'' },
+    { name:'白磁 中鉢',   price:'¥4,200', desc:'煮物やサラダに映える深鉢',   type:'deepbowl',  stripe:'' },
+    { name:'青磁 七寸皿', price:'¥4,800', desc:'メイン料理を受けとめる大皿', type:'largeplate',stripe:'' },
+  ];
+
+  /* 青磁の器イラスト（写真が用意できたら data-img に画像URLを入れて差し替え可） */
+  function vesselSVG(type){
+    const frame = '<rect width="400" height="500" fill="url(#frame)"/>';
+    const shadow = '<ellipse cx="200" cy="360" rx="112" ry="18" fill="#3a5b4e" opacity=".08"/>';
+    let v = '';
+    switch(type){
+      case 'bowl': // 飯碗
+        v = shadow
+          + '<path d="M96,250 Q200,470 304,250 Q200,300 96,250 Z" fill="url(#cel)"/>'
+          + '<path d="M172,350 Q200,362 228,350 L224,332 Q200,342 176,332 Z" fill="url(#celDark)"/>'
+          + '<ellipse cx="200" cy="250" rx="104" ry="30" fill="url(#celDark)"/>'
+          + '<ellipse cx="200" cy="251" rx="88" ry="23" fill="#eaf4ef"/>'
+          + '<ellipse cx="200" cy="253" rx="70" ry="16" fill="#d3e6dd"/>';
+        break;
+      case 'deepbowl': // 中鉢（深め・大きめ）
+        v = shadow
+          + '<path d="M80,236 Q200,500 320,236 Q200,300 80,236 Z" fill="url(#cel)"/>'
+          + '<path d="M170,388 Q200,402 230,388 L226,366 Q200,378 174,366 Z" fill="url(#celDark)"/>'
+          + '<ellipse cx="200" cy="236" rx="120" ry="34" fill="url(#celDark)"/>'
+          + '<ellipse cx="200" cy="238" rx="102" ry="26" fill="#eaf4ef"/>'
+          + '<ellipse cx="200" cy="240" rx="82" ry="18" fill="#d3e6dd"/>';
+        break;
+      case 'cup': // 湯呑（背の高い筒）
+        v = shadow
+          + '<path d="M140,210 L128,352 Q200,372 272,352 L260,210 Z" fill="url(#cel)"/>'
+          + '<ellipse cx="200" cy="210" rx="60" ry="18" fill="url(#celDark)"/>'
+          + '<ellipse cx="200" cy="211" rx="48" ry="13" fill="#eaf4ef"/>'
+          + '<path d="M150,250 Q160,320 200,336" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="5" stroke-linecap="round"/>';
+        break;
+      case 'mug': // マグ（取っ手つき）
+        v = shadow
+          + '<path d="M262,238 q66,-6 62,54 q-4,58 -66,50 l0,-24 q36,4 40,-28 q2,-30 -36,-28 Z" fill="url(#celDark)"/>'
+          + '<path d="M146,214 L136,352 Q200,372 264,352 L254,214 Z" fill="url(#cel)"/>'
+          + '<ellipse cx="200" cy="214" rx="59" ry="17" fill="url(#celDark)"/>'
+          + '<ellipse cx="200" cy="215" rx="47" ry="12" fill="#eaf4ef"/>'
+          + '<path d="M156,252 Q166,320 202,338" fill="none" stroke="#ffffff" stroke-opacity=".35" stroke-width="5" stroke-linecap="round"/>';
+        break;
+      case 'plate': // 小皿（浅く小さい）
+        v = shadow
+          + '<ellipse cx="200" cy="286" rx="118" ry="34" fill="url(#cel)"/>'
+          + '<ellipse cx="200" cy="278" rx="118" ry="34" fill="url(#celDark)"/>'
+          + '<ellipse cx="200" cy="276" rx="98" ry="27" fill="#eaf4ef"/>'
+          + '<ellipse cx="200" cy="275" rx="66" ry="17" fill="#d3e6dd"/>';
+        break;
+      case 'largeplate': // 七寸皿（大きく浅い）
+        v = shadow
+          + '<ellipse cx="200" cy="300" rx="150" ry="42" fill="url(#cel)"/>'
+          + '<ellipse cx="200" cy="288" rx="150" ry="42" fill="url(#celDark)"/>'
+          + '<ellipse cx="200" cy="286" rx="126" ry="34" fill="#eaf4ef"/>'
+          + '<ellipse cx="200" cy="285" rx="86" ry="22" fill="#d3e6dd"/>';
+        break;
+    }
+    return '<svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">'+frame+v+'</svg>';
+  }
+
+  function buy(p){
+    if(p.stripe && p.stripe.trim()){
+      window.location.href = p.stripe;
+    } else {
+      alert('「'+p.name+'」\n\nただいま販売準備中です。もうしばらくお待ちください。');
+    }
+  }
+
+  // 商品カードを描画
+  const row = document.getElementById('product-row');
+  PRODUCTS.forEach((p,i)=>{
+    const el = document.createElement('div');
+    el.className = 'card';
+    el.innerHTML =
+      '<div class="ph">'+vesselSVG(p.type)+'</div>'+
+      '<div class="meta"><h3>'+p.name+'</h3><span class="price">'+p.price+'</span></div>'+
+      '<div class="desc">'+p.desc+'</div>'+
+      '<button class="buy">購入する</button>';
+    el.querySelector('.buy').addEventListener('click',()=>buy(p));
+    row.appendChild(el);
+    if(i===0){ document.getElementById('hero-img').innerHTML = vesselSVG('deepbowl'); }
+  });
+  document.getElementById('about-photo').innerHTML = vesselSVG('cup');
+</script>
 </body>
 </html>
