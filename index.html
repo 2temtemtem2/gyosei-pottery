@@ -150,14 +150,15 @@
      stripe: '' の '' の中に決済リンクURLを貼るだけで買える状態になります。
      例）stripe: 'https://buy.stripe.com/xxxxxxxx'
      =========================================================== */
-  /* ★ img は「仮の写真」です。お父様の作品写真が撮れたら images/ に入れて差し替えてください。 */
+  /* ★ img は「仮の写真」です。お父様の作品写真が撮れたら images/ に入れて差し替えてください。
+     価格の正本はサーバー関数側（netlify/functions/create-checkout.js）です。id はそちらと一致させます。 */
   const PRODUCTS = [
-    { name:'粉引 飯碗',   price:'¥3,200', desc:'やさしい白化粧のごはん茶碗', type:'bowl',      img:'images/p1-meshiwan.jpg',  stripe:'' },
-    { name:'灰釉 湯呑',   price:'¥2,400', desc:'手になじむ普段の湯呑',       type:'cup',       img:'images/p2-yunomi.jpg',    stripe:'' },
-    { name:'刷毛目 小皿', price:'¥1,800', desc:'取り皿にちょうどいい一枚',   type:'plate',     img:'images/p3-kozara.jpg',    stripe:'' },
-    { name:'青磁 マグ',   price:'¥3,600', desc:'毎朝のコーヒーに',           type:'mug',       img:'images/p4-mug.jpg',       stripe:'' },
-    { name:'白磁 中鉢',   price:'¥4,200', desc:'煮物やサラダに映える深鉢',   type:'deepbowl',  img:'images/p5-nakabachi.jpg', stripe:'' },
-    { name:'青磁 七寸皿', price:'¥4,800', desc:'メイン料理を受けとめる大皿', type:'largeplate',img:'images/p6-oozara.jpg',    stripe:'' },
+    { id:'meshiwan',  name:'粉引 飯碗',   price:'¥3,200', desc:'やさしい白化粧のごはん茶碗', type:'bowl',      img:'images/p1-meshiwan.jpg'  },
+    { id:'yunomi',    name:'灰釉 湯呑',   price:'¥2,400', desc:'手になじむ普段の湯呑',       type:'cup',       img:'images/p2-yunomi.jpg'    },
+    { id:'kozara',    name:'刷毛目 小皿', price:'¥1,800', desc:'取り皿にちょうどいい一枚',   type:'plate',     img:'images/p3-kozara.jpg'    },
+    { id:'mug',       name:'青磁 マグ',   price:'¥3,600', desc:'毎朝のコーヒーに',           type:'mug',       img:'images/p4-mug.jpg'       },
+    { id:'nakabachi', name:'白磁 中鉢',   price:'¥4,200', desc:'煮物やサラダに映える深鉢',   type:'deepbowl',  img:'images/p5-nakabachi.jpg' },
+    { id:'oozara',    name:'青磁 七寸皿', price:'¥4,800', desc:'メイン料理を受けとめる大皿', type:'largeplate',img:'images/p6-oozara.jpg'    },
   ];
 
   /* 青磁の器イラスト（写真が用意できたら data-img に画像URLを入れて差し替え可） */
@@ -215,11 +216,26 @@
     return '<svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">'+frame+v+'</svg>';
   }
 
-  function buy(p){
-    if(p.stripe && p.stripe.trim()){
-      window.location.href = p.stripe;
-    } else {
-      alert('「'+p.name+'」\n\nただいま販売準備中です。もうしばらくお待ちください。');
+  async function buy(p, btn){
+    const label = btn.textContent;
+    btn.disabled = true; btn.textContent = '準備中…';
+    try {
+      const res = await fetch('/.netlify/functions/create-checkout', {
+        method:'POST',
+        headers:{ 'Content-Type':'application/json' },
+        body: JSON.stringify({ id: p.id }),
+      });
+      if (res.status === 503) { // Stripe未設定
+        alert('「'+p.name+'」\n\nただいま販売準備中です。もうしばらくお待ちください。');
+        return;
+      }
+      const data = await res.json();
+      if (data.url) { window.location.href = data.url; return; } // Stripe決済ページへ
+      throw new Error(data.error || 'unknown');
+    } catch (e) {
+      alert('申し訳ありません。ただいま購入手続きを開始できませんでした。\nお手数ですが時間をおいて再度お試しください。');
+    } finally {
+      btn.disabled = false; btn.textContent = label;
     }
   }
 
@@ -243,7 +259,8 @@
       '<div class="meta"><h3>'+p.name+'</h3><span class="price">'+p.price+'</span></div>'+
       '<div class="desc">'+p.desc+'</div>'+
       '<button class="buy">購入する</button>';
-    el.querySelector('.buy').addEventListener('click',()=>buy(p));
+    const btn = el.querySelector('.buy');
+    btn.addEventListener('click',()=>buy(p, btn));
     row.appendChild(el);
   });
   // ヒーロー・作り手の写真

@@ -1,0 +1,9 @@
+{
+  "name": "gyosei-pottery",
+  "version": "1.0.0",
+  "private": true,
+  "description": "暁星 GYOSEI — 普段使いの器のオンラインショップ",
+  "dependencies": {
+    "stripe": "^16.12.0"
+  }
+}

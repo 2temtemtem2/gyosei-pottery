@@ -3,99 +3,112 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>買える状態にする手順（Stripe接続）｜暁星</title>
+<title>公開と決済のセットアップ｜暁星</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;500;600&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Noto Sans JP',sans-serif; color:#1e2c27; background:#eef4f0; line-height:1.9; -webkit-font-smoothing:antialiased; }
-  .main { max-width:800px; margin:32px auto; background:#fbfdfc; padding:48px 52px 60px; border-radius:6px; box-shadow:0 4px 24px rgba(50,80,66,.1); }
+  .main { max-width:820px; margin:32px auto; background:#fbfdfc; padding:48px 52px 60px; border-radius:6px; box-shadow:0 4px 24px rgba(50,80,66,.1); }
   .brand { font-family:'Shippori Mincho',serif; font-size:20px; letter-spacing:.35em; color:#5f7d72; }
   h1 { font-family:'Shippori Mincho',serif; font-size:27px; font-weight:600; margin:8px 0 6px; letter-spacing:.05em; }
-  .sub { color:#6a8579; font-size:14px; margin-bottom:36px; }
-  .step { display:flex; gap:18px; padding:22px 0; border-top:1px solid #e2ede8; }
-  .no { flex:0 0 36px; width:36px; height:36px; background:#5f7d72; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:16px; }
-  .step h2 { font-family:'Shippori Mincho',serif; font-size:18px; font-weight:600; margin-bottom:6px; }
+  .sub { color:#6a8579; font-size:14px; margin-bottom:14px; }
+  .arch { background:#e8f0ec; border-radius:6px; padding:16px 20px; font-size:13.5px; color:#334a41; margin-bottom:20px; }
+  .arch b { color:#1e2c27; }
+  .phase { font-family:'Shippori Mincho',serif; font-size:15px; color:#5f7d72; letter-spacing:.1em; margin:30px 0 4px; padding-top:20px; border-top:2px solid #dbe8e1; }
+  .step { display:flex; gap:18px; padding:20px 0; border-top:1px solid #e2ede8; }
+  .step:first-of-type { border-top:none; }
+  .no { flex:0 0 34px; width:34px; height:34px; background:#5f7d72; color:#fff; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:700; font-size:15px; }
+  .step h2 { font-family:'Shippori Mincho',serif; font-size:17px; font-weight:600; margin-bottom:6px; }
   .step p { font-size:14px; color:#43594f; }
   .step ul { margin:8px 0 0 18px; }
   .step li { font-size:13.5px; color:#43594f; padding:2px 0; }
-  code { background:#eef4f0; padding:2px 7px; border-radius:3px; font-size:13px; color:#5f7d72; font-family:ui-monospace,monospace; }
-  .box { background:#f0f6f2; border-left:4px solid #5f7d72; padding:16px 18px; margin:12px 0 0; font-size:13.5px; border-radius:3px; }
-  .tip { background:#fff4e0; border-left-color:#e0a94a; }
-  pre { background:#20302a; color:#d6e8df; padding:16px 18px; border-radius:5px; overflow-x:auto; font-size:12.5px; line-height:1.7; margin-top:10px; }
-  pre .c { color:#ffd98a; }
-  .fee { display:flex; gap:20px; flex-wrap:wrap; margin-top:14px; }
-  .fee div { background:#e8f0ec; border-radius:5px; padding:14px 18px; font-size:13px; }
-  .fee b { font-family:'Shippori Mincho',serif; font-size:18px; color:#334a41; }
+  code { background:#eef4f0; padding:2px 7px; border-radius:3px; font-size:13px; color:#4a6459; font-family:ui-monospace,monospace; word-break:break-all; }
+  a { color:#5f7d72; }
+  .box { background:#f0f6f2; border-left:4px solid #5f7d72; padding:14px 18px; margin:12px 0 0; font-size:13.5px; border-radius:3px; }
+  .warn { background:#fff4e0; border-left-color:#e0a94a; }
+  .fee { display:flex; gap:16px; flex-wrap:wrap; margin-top:12px; }
+  .fee div { background:#e8f0ec; border-radius:5px; padding:12px 16px; font-size:13px; }
+  .fee b { font-family:'Shippori Mincho',serif; font-size:17px; color:#334a41; }
   @media(max-width:600px){ .main{padding:32px 22px;} }
 </style>
 </head>
 <body>
 <div class="main">
   <div class="brand">暁星 GYOSEI</div>
-  <h1>「買える状態」にする最後の手順</h1>
-  <p class="sub">サイトはもう完成しています。あとは Stripe（決済サービス）とつなぐだけ。所要 30分ほどです。</p>
+  <h1>公開と決済のセットアップ</h1>
+  <p class="sub">Netlify（公開）＋ Stripe（決済）方式。決済リンクを手作業で6本作る必要はありません。</p>
+
+  <div class="arch">
+    <b>この方式のいいところ：</b>購入ボタンが押されると、サーバー関数がその商品の価格で決済ページを自動生成します。だから <b>Stripeでやるのは「キーを1個コピーして貼る」だけ</b>。新商品もサイトの商品リストに1行足すだけで対応できます。
+  </div>
+
+  <div class="phase">◯ フェーズ1：Netlifyで公開する</div>
 
   <div class="step">
     <div class="no">1</div>
     <div>
-      <h2>Stripe アカウントを作る（無料）</h2>
-      <p><code>stripe.com/jp</code> にアクセスし、メールアドレスで登録します。月額・初期費用は0円。手数料は決済ごとに <b>3.6%</b> だけです。</p>
-      <div class="fee">
-        <div>初期費用 <b>¥0</b></div>
-        <div>月額 <b>¥0</b></div>
-        <div>決済手数料 <b>3.6%</b></div>
-      </div>
-      <div class="box tip">本人確認（氏名・住所・振込先の銀行口座）が必要です。売上はこの口座に自動で振り込まれます。</div>
+      <h2>Netlify に登録（無料）</h2>
+      <p><a href="https://app.netlify.com/signup">app.netlify.com/signup</a> で「GitHubで続ける」を選ぶと、いまのGitHubアカウントですぐ登録できます。</p>
     </div>
   </div>
 
   <div class="step">
     <div class="no">2</div>
     <div>
-      <h2>商品ごとに「決済リンク」を作る</h2>
-      <p>Stripe管理画面 → 左メニューの<b>「支払い」→「Payment Links（支払いリンク）」</b>→「新規作成」。商品名と価格を入れるだけで、支払いページのURLが発行されます。</p>
-      <ul>
-        <li>商品は全部で6つ（飯碗・湯呑・小皿・マグ・中鉢・七寸皿）</li>
-        <li>各リンクの設定で <b>「配送先住所を収集する」をオン</b>にしておく（発送に必要）</li>
-        <li>できたURLは <code>https://buy.stripe.com/xxxx</code> の形です</li>
-      </ul>
-      <div class="box">6商品ぶん、6本のURLができます。これをメモしておいてください。</div>
+      <h2>リポジトリをつないで公開</h2>
+      <p>「Add new site（サイトを追加）」→「Import an existing project」→ GitHub → <code>gyosei-pottery</code> を選択。設定はそのまま「Deploy」。</p>
+      <div class="box">数十秒で <code>https://ランダム名.netlify.app</code> の公開URLが発行されます。あとで好きな名前や独自ドメインに変更できます。</div>
     </div>
   </div>
+
+  <div class="phase">◯ フェーズ2：Stripeをつなぐ（あとでOK）</div>
 
   <div class="step">
     <div class="no">3</div>
     <div>
-      <h2>URLをサイトに貼る（これだけ）</h2>
-      <p><code>index.html</code> の上のほうにある商品リストの、各商品の <code>stripe:''</code> の <code>''</code> の中にURLを貼ります。</p>
-      <pre>const PRODUCTS = [
-  { name:'粉引 飯碗', price:'¥3,200', … stripe:<span class="c">'https://buy.stripe.com/aaaa'</span> },
-  { name:'灰釉 湯呑', price:'¥2,400', … stripe:<span class="c">'https://buy.stripe.com/bbbb'</span> },
-  …
-];</pre>
-      <div class="box">これで「購入する」ボタンが本物の決済ページに飛ぶようになり、<b>買える状態</b >の完成です。（貼るまでは「販売準備中です」と表示され、誤購入は起きません）</div>
+      <h2>Stripe に登録（無料）</h2>
+      <p><a href="https://dashboard.stripe.com/register">dashboard.stripe.com/register</a> で登録。本人確認（氏名・住所・振込先口座）を済ませます。</p>
+      <div class="fee">
+        <div>初期費用 <b>¥0</b></div><div>月額 <b>¥0</b></div><div>手数料 <b>3.6%</b></div>
+      </div>
     </div>
   </div>
 
   <div class="step">
     <div class="no">4</div>
     <div>
-      <h2>特定商取引法ページを記入</h2>
-      <p><code>tokushoho.html</code> の <b style="color:#b06a2a;">オレンジ色の箇所</b>（氏名・住所・電話番号など）を、実際の情報に書き換えます。ネット販売では法律で必須です。</p>
+      <h2>シークレットキーをコピー</h2>
+      <p>Stripe管理画面 →「開発者」→「APIキー」→ <b>「シークレットキー」</b>（<code>sk_live_...</code>）をコピー。</p>
+      <div class="box warn">シークレットキーは<b>パスワードと同じ</b>くらい大事です。人に見せたりチャットに貼ったりしないこと。貼るのは次の「Netlifyの環境変数」だけ。</div>
     </div>
   </div>
 
   <div class="step">
     <div class="no">5</div>
     <div>
-      <h2>公開（反映）</h2>
-      <p>変更を保存して <code>git push</code> すれば、同じURLに自動で反映されます。この作業は私（Claude）がやります。「Stripeリンクできたよ」と言ってもらえれば、貼り付けから公開までまとめて対応します。</p>
+      <h2>Netlifyにキーを登録して完了</h2>
+      <p>Netlifyのサイト →「Site configuration」→「Environment variables」→「Add a variable」で、</p>
+      <ul>
+        <li>キー名：<code>STRIPE_SECRET_KEY</code></li>
+        <li>値：さっきコピーした <code>sk_live_...</code></li>
+      </ul>
+      <p style="margin-top:8px;">保存したら「Deploys」→「Trigger deploy」で再公開。これで<b>購入ボタンが本物の決済につながり、買える状態の完成</b>です。</p>
     </div>
   </div>
 
-  <div class="box" style="margin-top:32px;">
-    <b>まとめ：</b>あなたがやるのは「①Stripe登録 → ②6本のリンク作成」だけ。あとの貼り付け・特商法・公開は私に投げてOKです。
+  <div class="phase">◯ フェーズ3：仕上げ</div>
+  <div class="step">
+    <div class="no">6</div>
+    <div>
+      <h2>特定商取引法ページを記入</h2>
+      <p><code>tokushoho.html</code> のオレンジ色の箇所（氏名・住所・電話）を実際の情報に。ネット販売では法律で必須です。私（Claude）が記入・公開まで対応します。</p>
+    </div>
+  </div>
+
+  <div class="box" style="margin-top:30px;">
+    <b>あなたがやるのは：</b>①Netlify登録＋接続 → ②Stripe登録 → ③キーをNetlifyに貼る、の3つだけ。<br>
+    キーを貼るまでは購入ボタンは「販売準備中です」と表示され、誤購入は起きません。フェーズ2は後回しでもOKです。
   </div>
 </div>
 </body>

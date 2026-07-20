@@ -1,0 +1,7 @@
+# Netlify 設定
+[build]
+  publish = "."                      # 静的ファイルはリポジトリ直下
+  functions = "netlify/functions"    # サーバー関数の置き場
+
+[functions]
+  node_bundler = "esbuild"
