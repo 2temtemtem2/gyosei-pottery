@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>お支払いへ｜暁星 GYOSEI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;600&family=Noto+Sans+JP:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Noto Sans JP',sans-serif; color:#1e2c27; background:#f1f6f3; font-weight:300; line-height:2; min-height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; padding:24px; -webkit-font-smoothing:antialiased; }
+  .box { max-width:440px; }
+  .mark { width:60px; height:60px; border:1.5px solid #5f7d72; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 24px; font-family:'Shippori Mincho',serif; font-size:24px; color:#5f7d72; }
+  h1 { font-family:'Shippori Mincho',serif; font-size:20px; font-weight:600; letter-spacing:.06em; margin-bottom:10px; }
+  .name { font-family:'Shippori Mincho',serif; font-size:24px; color:#334a41; margin:6px 0 4px; }
+  .price { color:#5f7d72; font-size:16px; }
+  p { color:#43594f; font-size:13.5px; margin-top:18px; }
+  .spin { width:34px; height:34px; border:3px solid #cbe0d6; border-top-color:#5f7d72; border-radius:50%; margin:26px auto 0; animation:sp .8s linear infinite; }
+  @keyframes sp { to { transform:rotate(360deg); } }
+  .btn { display:inline-block; margin-top:22px; font-size:12px; letter-spacing:.2em; color:#fff; background:#5f7d72; padding:12px 30px; border:none; border-radius:2px; cursor:pointer; font-family:inherit; text-decoration:none; }
+  .btn:hover { background:#4a6459; }
+  .back { display:block; margin-top:20px; font-size:12px; color:#89a49a; text-decoration:none; letter-spacing:.15em; }
+  .hidden { display:none; }
+</style>
+</head>
+<body>
+  <div class="box">
+    <div class="mark">暁</div>
+    <div id="loading">
+      <div class="name" id="pname">お支払いへ進みます</div>
+      <div class="price" id="pprice"></div>
+      <p>決済ページへ移動しています…</p>
+      <div class="spin"></div>
+    </div>
+    <div id="soon" class="hidden">
+      <h1>ただいま販売準備中です</h1>
+      <p>もうしばらくお待ちください。<br>オンラインショップはまもなくオープンします。</p>
+      <a class="back" href="index.html">← 暁星のトップへ</a>
+    </div>
+    <div id="err" class="hidden">
+      <h1>うまく進めませんでした</h1>
+      <p>お手数ですが、もう一度お試しください。</p>
+      <button class="btn" onclick="location.reload()">もう一度</button>
+      <a class="back" href="index.html">← 暁星のトップへ</a>
+    </div>
+  </div>
+
+<script>
+  // 商品名・価格の表示用（決済の正本はサーバー側）
+  const INFO = {
+    meshiwan:  { name:'粉引 飯碗',   price:'¥3,200' },
+    yunomi:    { name:'灰釉 湯呑',   price:'¥2,400' },
+    kozara:    { name:'刷毛目 小皿', price:'¥1,800' },
+    mug:       { name:'青磁 マグ',   price:'¥3,600' },
+    nakabachi: { name:'白磁 中鉢',   price:'¥4,200' },
+    oozara:    { name:'青磁 七寸皿', price:'¥4,800' },
+  };
+  const id = new URLSearchParams(location.search).get('item');
+  const show = (elId) => { ['loading','soon','err'].forEach(x=>document.getElementById(x).classList.add('hidden')); document.getElementById(elId).classList.remove('hidden'); };
+
+  const info = INFO[id];
+  if (info) { document.getElementById('pname').textContent = info.name; document.getElementById('pprice').textContent = info.price; }
+
+  (async () => {
+    if (!info) { show('err'); return; }
+    try {
+      const res = await fetch('/.netlify/functions/create-checkout', {
+        method:'POST', headers:{ 'Content-Type':'application/json' },
+        body: JSON.stringify({ id }),
+      });
+      if (res.status === 503) { show('soon'); return; }      // Stripe未設定
+      const data = await res.json();
+      if (data.url) { location.href = data.url; return; }    // Stripe決済ページへ
+      show('err');
+    } catch (e) { show('err'); }
+  })();
+</script>
+</body>
+</html>
